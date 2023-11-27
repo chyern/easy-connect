@@ -2,7 +2,6 @@ package chenyudan.process;
 
 import chenyudan.domain.ConnectProcessRoute;
 
-import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.ServiceLoader;
 
@@ -12,9 +11,8 @@ import java.util.ServiceLoader;
  * @author Chyern
  * @since 2023/11/25 17:51
  */
-public class ConnectProcess implements InvocationHandler {
+public class ConnectProcess {
 
-    @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
         //目标路由
@@ -24,10 +22,6 @@ public class ConnectProcess implements InvocationHandler {
             processRoute = routeSpi.buildConnectProcessRoute(proxy, method, args);
             break;
         }
-
-
-
-
 
 
         ServiceLoader<ConnectProcessSpi> connectProcessSpis = ServiceLoader.load(ConnectProcessSpi.class);

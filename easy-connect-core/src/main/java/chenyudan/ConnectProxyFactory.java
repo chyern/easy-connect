@@ -2,8 +2,6 @@ package chenyudan;
 
 import chenyudan.proxy.ProxyInstance;
 
-import java.util.ServiceLoader;
-
 /**
  * Description: TODO
  *
@@ -13,9 +11,10 @@ import java.util.ServiceLoader;
 public class ConnectProxyFactory {
 
     public static <T> T getObject(Class<T> clazz) {
-        ServiceLoader<ProxyInstance> connectProxyInstances = ServiceLoader.load(ProxyInstance.class);
-        for (ProxyInstance proxyInstance : connectProxyInstances) {
-            return (T) proxyInstance.newProxyInstance(clazz);
+        for (ProxyInstance proxyInstance : ConnectRegister.proxyInstances) {
+            if (proxyInstance.match(clazz)) {
+                return (T) proxyInstance.newProxyInstance(clazz);
+            }
         }
         throw new UnsupportedOperationException("未找到可用的代理");
     }

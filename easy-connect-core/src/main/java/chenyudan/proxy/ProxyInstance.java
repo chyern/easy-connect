@@ -9,4 +9,6 @@ package chenyudan.proxy;
 public interface ProxyInstance {
 
     Object newProxyInstance(Class clazz);
+
+    boolean match(Class clazz);
 }
