@@ -9,7 +9,7 @@ import java.lang.reflect.Proxy;
 /**
  * Description: TODO
  *
- * @author Chyern
+ * @author chenyu
  * @since 2023/11/25 17:44
  */
 public class JdkProxy implements ProxyInstance {
