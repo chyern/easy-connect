@@ -1,7 +1,8 @@
 package chenyudan;
 
 import chenyudan.process.ConnectProcessRouteSpi;
-import chenyudan.proxy.ProxyInstance;
+import chenyudan.process.ConnectProcessSpi;
+import chenyudan.proxy.ConnectProxySpi;
 
 import java.util.ServiceLoader;
 
@@ -13,12 +14,14 @@ import java.util.ServiceLoader;
  */
 public class ConnectRegister {
 
-    public static final ServiceLoader<ProxyInstance> proxyInstances;
-
+    public static final ServiceLoader<ConnectProxySpi> proxySpis;
+    public static final ServiceLoader<ConnectProcessSpi> processSpis;
     public static final ServiceLoader<ConnectProcessRouteSpi> processRouteSpis;
 
+
     static {
-        proxyInstances = register(ProxyInstance.class);
+        proxySpis = register(ConnectProxySpi.class);
+        processSpis = register(ConnectProcessSpi.class);
         processRouteSpis = register(ConnectProcessRouteSpi.class);
     }
 

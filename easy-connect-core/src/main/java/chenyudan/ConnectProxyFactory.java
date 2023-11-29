@@ -1,6 +1,6 @@
 package chenyudan;
 
-import chenyudan.proxy.ProxyInstance;
+import chenyudan.proxy.ConnectProxySpi;
 
 /**
  * Description: TODO
@@ -11,9 +11,9 @@ import chenyudan.proxy.ProxyInstance;
 public class ConnectProxyFactory {
 
     public static <T> T getObject(Class<T> clazz) {
-        for (ProxyInstance proxyInstance : ConnectRegister.proxyInstances) {
-            if (proxyInstance.match(clazz)) {
-                return (T) proxyInstance.newProxyInstance(clazz);
+        for (ConnectProxySpi connectProxySpi : ConnectRegister.proxySpis) {
+            if (connectProxySpi.match(clazz)) {
+                return (T) connectProxySpi.newProxyInstance(clazz);
             }
         }
         throw new UnsupportedOperationException("未找到可用的代理");

@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
  * @author chenyu
  * @since 2023/11/25 17:44
  */
-public class CglibProxy implements ProxyInstance {
+public class CglibProxy implements ConnectProxySpi {
 
     @Override
     public Object newProxyInstance(Class clazz) {

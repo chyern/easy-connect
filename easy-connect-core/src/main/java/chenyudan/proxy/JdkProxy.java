@@ -12,7 +12,7 @@ import java.lang.reflect.Proxy;
  * @author chenyu
  * @since 2023/11/25 17:44
  */
-public class JdkProxy implements ProxyInstance {
+public class JdkProxy implements ConnectProxySpi {
 
     @Override
     public Object newProxyInstance(Class clazz) {

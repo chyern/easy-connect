@@ -6,7 +6,7 @@ package chenyudan.proxy;
  * @author chenyu
  * @since 2023/11/25 17:35
  */
-public interface ProxyInstance {
+public interface ConnectProxySpi {
 
     Object newProxyInstance(Class clazz);
 

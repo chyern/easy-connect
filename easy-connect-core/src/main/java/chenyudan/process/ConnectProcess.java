@@ -1,6 +1,8 @@
 package chenyudan.process;
 
+import chenyudan.ConnectRegister;
 import chenyudan.domain.ConnectProcessRoute;
+import chenyudan.proxy.ConnectProxySpi;
 
 import java.lang.reflect.Method;
 import java.util.ServiceLoader;
@@ -17,15 +19,13 @@ public class ConnectProcess {
 
         //目标路由
         ConnectProcessRoute processRoute = null;
-        ServiceLoader<ConnectProcessRouteSpi> routeSpis = ServiceLoader.load(ConnectProcessRouteSpi.class);
-        for (ConnectProcessRouteSpi routeSpi : routeSpis) {
-            processRoute = routeSpi.buildConnectProcessRoute(proxy, method, args);
+        for (ConnectProcessRouteSpi processRouteSpi : ConnectRegister.processRouteSpis) {
+            processRoute = processRouteSpi.buildConnectProcessRoute(proxy, method, args);
             break;
         }
 
 
-        ServiceLoader<ConnectProcessSpi> connectProcessSpis = ServiceLoader.load(ConnectProcessSpi.class);
-        for (ConnectProcessSpi connectProcessSpi : connectProcessSpis) {
+        for (ConnectProcessSpi connectProcessSpi : ConnectRegister.processSpis) {
             try {
                 connectProcessSpi.buildTargetRoute(proxy, method, args);
                 connectProcessSpi.before(proxy, method, args);
