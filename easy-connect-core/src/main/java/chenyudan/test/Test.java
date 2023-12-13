@@ -12,11 +12,7 @@ public class Test {
 
     public static void main(String[] args) {
         ProxyInterface proxyInterface = ConnectProxyFactory.getObject(ProxyInterface.class);
-        //proxyInterface.test();
-
-        ProxyClass proxyClass = ConnectProxyFactory.getObject(ProxyClass.class);
-        proxyClass.test();
-
+        proxyInterface.test();
 
         System.out.println(1);
     }
