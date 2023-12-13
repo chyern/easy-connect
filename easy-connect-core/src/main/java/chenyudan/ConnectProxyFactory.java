@@ -1,6 +1,10 @@
 package chenyudan;
 
-import chenyudan.proxy.ConnectProxySpi;
+import chenyudan.process.ConnectProcess;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
 /**
  * Description: TODO
@@ -11,11 +15,15 @@ import chenyudan.proxy.ConnectProxySpi;
 public class ConnectProxyFactory {
 
     public static <T> T getObject(Class<T> clazz) {
-        for (ConnectProxySpi connectProxySpi : ConnectRegister.proxySpis) {
-            if (connectProxySpi.match(clazz)) {
-                return (T) connectProxySpi.newProxyInstance(clazz);
-            }
+        return (T) Proxy.newProxyInstance(clazz.getClassLoader(), new Class[]{clazz}, new ConnectInvocationHandler());
+    }
+
+    static class ConnectInvocationHandler implements InvocationHandler {
+
+        @Override
+        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+            ConnectProcess connectProcess = new ConnectProcess();
+            return connectProcess.invoke(proxy, method, args);
         }
-        throw new UnsupportedOperationException("未找到可用的代理");
     }
 }

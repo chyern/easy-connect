@@ -1,26 +1,29 @@
-package chenyudan;
+package chenyudan.config;
 
+import chenyudan.domain.ConnectConfig;
 import chenyudan.process.ConnectProcessRouteSpi;
 import chenyudan.process.ConnectProcessSpi;
-import chenyudan.proxy.ConnectProxySpi;
 
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ServiceLoader;
 
 /**
  * Description: TODO
  *
  * @author chenyu
- * @since 2023/11/27 16:33
+ * @since 2023/12/13 19:57
  */
-public class ConnectRegister {
+public class ConnectConfigStowage {
 
-    public static final ServiceLoader<ConnectProxySpi> proxySpis;
+    public Map<Class, ConnectConfig> cacheConfigMap = new HashMap<>();
+
     public static final ServiceLoader<ConnectProcessSpi> processSpis;
     public static final ServiceLoader<ConnectProcessRouteSpi> processRouteSpis;
 
 
     static {
-        proxySpis = register(ConnectProxySpi.class);
         processSpis = register(ConnectProcessSpi.class);
         processRouteSpis = register(ConnectProcessRouteSpi.class);
     }
@@ -29,5 +32,7 @@ public class ConnectRegister {
         return ServiceLoader.load(clazz);
     }
 
-
+    public static ConnectConfig autoConfigStowage(Object proxy, Method method, Object[] args) {
+        return new ConnectConfig(null, null);
+    }
 }
