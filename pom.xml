@@ -19,7 +19,8 @@
     <modules>
         <module>easy-connect-core</module>
         <module>easy-connect-spi</module>
-        <module>easy-connet-spring-start</module>
+        <module>easy-connect-spring-start</module>
+        <module>easy-connect-test</module>
     </modules>
 
     <dependencyManagement>

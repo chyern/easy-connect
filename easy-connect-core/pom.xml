@@ -12,6 +12,11 @@
 
     <artifactId>easy-connect-core</artifactId>
 
+    <properties>
+        <okhttp3.version>3.14.7</okhttp3.version>
+        <commons-lang3.version>3.9</commons-lang3.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>chenyudan</groupId>
@@ -19,9 +24,15 @@
         </dependency>
 
         <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
-            <version>3.3.0</version>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>${okhttp3.version}</version>
         </dependency>
     </dependencies>
 
